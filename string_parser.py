@@ -13,7 +13,7 @@ def parse_string(val):
         if letter == ')':
             if double_mode:
                 double_mode == False
-                parsed.append(double_parse)
+                parsed.append(parse_string(double_parse))
                 double_parse = ""
             elif not double_mode:
                 return False, 'Syntax error', []
@@ -39,6 +39,12 @@ def parse_string(val):
         parsed.remove(' ')
 
     return True, 'Input parsed!', parsed
+
+def check_operation_order(parsed):
+    sequence = []
+    for operation in parsed:
+        if type(operation) == list:
+            sequence.append(parsed.index(operation)) #Find this element
 
 
 

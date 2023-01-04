@@ -14,8 +14,7 @@ def main():
 
 def define_operations(list):
     for sym in list:
-        if sym == '-': # * -1
-            print("l")
+
 
 
 main()
