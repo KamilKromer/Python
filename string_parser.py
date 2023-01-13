@@ -86,7 +86,7 @@ def parse_string(val):
         else:
             print('Syntax error!')
             return False
- 
+    parsed = convert_to_float(parsed)
     return parsed
 
 
@@ -103,6 +103,10 @@ def check_operation_order(parsed: list):
             sequence.append(parsed.index(operation)) #everything else -> go from left to right
     return sequence
 
-def convert_to_float():
-    pass
+
+def convert_to_float(val: list):
+    for index in range(len(val)):
+        if val[index].isnumeric():
+            val[index] = float(val[index])  # Change to float, always
+    return val
 
