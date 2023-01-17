@@ -21,7 +21,7 @@ def main():
     if not message_lock:
         message_lock = True
         for message in default_message:
-            print(message, end = '\n')
+            print(message)
 
     raw = input('\033[92mWaiting for input: \033[0m')
 
