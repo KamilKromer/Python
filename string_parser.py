@@ -52,7 +52,7 @@ def parse_string(val):
                 double_parse = ""
                 continue
             elif not double_mode:
-                print('Syntax error!')
+                print('\033[91mSyntax Error!\033[0m')
                 return False
 
         if double_mode:
@@ -71,7 +71,7 @@ def parse_string(val):
         #End bracket parse
         elif letter == '-':
             if minus_multiply or (len(parsed) > 0 and parsed[-1] in key): # Situation where there are two minuses together, or an example situation 10 * - 2
-                print("Syntax error!")
+                print("\033[91mSyntax Error!\033[0m")
                 return False
             #print('minus multiply set to true!')
             minus_multiply = True
@@ -97,15 +97,17 @@ def parse_string(val):
         elif letter in key or letter == '-': #This letter is in key, we can't add minus to the key directly
             cur_ind = -1
             if (letter in key_INDEX_ERROR and len(parsed) <= 0) or ( (len(parsed) > 0) and (parsed[-1] in key or parsed[-1] == '-') ): #Second statements checks if there isnt a situation  like this: 3 */ 2
-                print('Syntax error!')
+                print('\033[91mSyntax Error!\033[0m')
                 return False
             else:
                 parsed.append(letter)
                 continue
         else:
-            print(f'Syntax error, {letter} is not defined!')
+            print(f'\033[91mSyntax Error, {letter} is not defined!\033[0m')
             return False
-
+    if double_mode:
+        print('\033[91mSyntax Error, no closing bracket!\033[0m')
+        return False
     if not CheckForErrors(parsed):
         return False
     parsed = InsertMultiplication(parsed)
@@ -157,7 +159,7 @@ def CheckForErrors(val: list):
     last_letter_was_numeric = False
     for letter in val:
         if CheckNumeric(letter) and last_letter_was_numeric:
-            print("Syntax Error!")
+            print("\033[91mSyntax Error!\033[0m")
             return False
         last_letter_was_numeric = CheckNumeric(letter)
     return True

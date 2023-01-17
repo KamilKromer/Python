@@ -2,7 +2,7 @@ from string_parser import *
 from math import sqrt
 
 default_message = [
-    "Equation calculator, list of operations:",
+    "\033[95mEquation calculator, list of operations:",
     "+    -> add",
     "-    -> substract",
     "*    -> multiply",
@@ -10,7 +10,7 @@ default_message = [
     "^    -> raise to the power",
     "R    -> square root",
     "Brackets ( ) are supported, order of operations applies!",
-    "Remember to insert spaces properly when using the - (minus) symbol, - 9 * 8 is not equal (codewise) to -9 * 8"
+    "Remember to insert spaces properly when using the - (minus) symbol, - 9 * 8 is not equal (codewise) to -9 * 8\033[0m"
 ]
 
 message_lock = False
@@ -23,22 +23,22 @@ def main():
         for message in default_message:
             print(message, end = '\n')
 
-    raw = input('Waiting for input: ')
+    raw = input('\033[92mWaiting for input: \033[0m')
 
     parsed = parse_string(raw)
     if parsed == False:
         main()
-    print(f"MAIN: Parsed string: {parsed}")
+    print(f"\033[93mMAIN: Parsed string: {parsed}\033[0m")
 
     sequence = check_operation_order(parsed)
-    print(f"MAIN: Sequence is: {sequence}")
+    print(f"\033[93mMAIN: Sequence is: {sequence}\033[0m")
 
     result = 0
     try:
         result = calculate(parsed, sequence)
     except:
         print("An error occured while calculating!")
-    print(f"Result: {result}")
+    print(f"\033[92mResult: {result}\033[0m")
 
     main()
 
@@ -47,13 +47,13 @@ def main():
 
 #Calculation
 def calculate(parsed: list, operations: list):
-    print(parsed)
+    #print(parsed)
     for o_index in range(len(operations)):
-        print("Operation check!")
+        #print("Operation check!")
         if type(parsed[operations[o_index]]) == list:
-            print("Operation checked true")
+            #print("Operation checked true")
             sequence = check_operation_order(parsed[operations[o_index]])
-            print(sequence)
+            #print(sequence)
             calculate(parsed[operations[o_index]], sequence) # Calculate expressions in brackets, self recurring code
 
         for letter_ind in range(len(parsed)):
@@ -75,16 +75,16 @@ def calculate(parsed: list, operations: list):
          #-1 is left, 1 is right (Direction)
 
         index = operations[o_index]
-        print("Current operation index is " + str(index) + " in parsed equal to ")
-        print(parsed)
+        #print("Current operation index is " + str(index) + " in parsed equal to ")
+        #print(parsed)
         if parsed[index] == '*':
             left = Get_num(parsed, -1, index)
             right = Get_num(parsed, 1, index)
-            print("Left: " + str(left))
-            print("Right: " + str(right))
+            #print("Left: " + str(left))
+            #print("Right: " + str(right))
             parsed[index] = left * right
-            print("Parsed od index: " + str(parsed[index]))
-            print(parsed)
+            #print("Parsed od index: " + str(parsed[index]))
+            #print(parsed)
 
         if parsed[index] == '/':
             left = Get_num(parsed, -1, index)
@@ -100,10 +100,10 @@ def calculate(parsed: list, operations: list):
         if parsed[index] == '-':
             left = Get_num(parsed, -1, index)
             right = Get_num(parsed, 1, index)
-            print("Left: " + str(left))
-            print("Right: " + str(right))
+            #print("Left: " + str(left))
+            #print("Right: " + str(right))
             parsed[index] = left - right
-            print("Parsed od index: " + str(parsed[index]))
+            #print("Parsed od index: " + str(parsed[index]))
         if parsed[index] == '^':
             left = Get_num(parsed, -1, index)
             right = Get_num(parsed, 1, index)
@@ -122,7 +122,7 @@ def calculate(parsed: list, operations: list):
         else:
             count += 1
             num = am
-    print(f"Count is {count}")
+    #print(f"Count is {count}")
     if count == 1: #Theres only one object, which means that this has been calculated and waits to be collapsed into final result
         parsed = num #End, return the result
     return parsed
