@@ -3,20 +3,14 @@ n = int(input())
 
 for _ in range(n):
 
-    sumy = int(input())
-    pow_ind = 0
-    suma = 0
-    potega = 1
-    for op in range(sumy):
-        liczba = op + 1
-        if liczba == potega:
-            pow_ind += 1
-            potega = 2 ** pow_ind
-            suma -= liczba
-        else:
-            suma += liczba
+    liczba = int(input())
+    
+    suma = int( ( liczba * (liczba + 1) ) / 2 )
+    pow = 0
 
-
+    while 2**pow <= liczba:
+        pow += 1
+    
+    suma -= ( (2**pow) - 1 )*2
     print(suma)
-
 
