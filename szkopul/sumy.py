@@ -15,7 +15,6 @@ for _ in range(n):
             suma -= liczba
         else:
             suma += liczba
-        print("p")
 
 
     print(suma)
