@@ -12,18 +12,22 @@ for _ in range(n):
     klienci[kiedy] = czas
 
 id_ = 0
-while(aktualny_czas < L): # Dla każdego klienta
+while aktualny_czas < L:  # Dla każdego klienta
     try:
         kiedy = list(klienci.keys())[id_]
         id_ += 1
         ile = klienci[kiedy]
 
         if aktualny_czas + a <= kiedy:
-            while (aktualny_czas + a <= kiedy):
+            while aktualny_czas + a <= kiedy:
                 suma_przerw += 1
                 aktualny_czas += a
-        else:
             aktualny_czas += ile
+        else:
+            aktualny_czas = kiedy + ile
+        print(f"Klient o {kiedy} zajął {ile}, przerwy {suma_przerw}")
+        print(f"Aktualny czas {aktualny_czas}")
+        print(f"Czas do końca zmiany {L - aktualny_czas}")
 
     except IndexError: # Koniec klientów, obliczaj ile przerw do konca zmiany
         if aktualny_czas + a <= L:
