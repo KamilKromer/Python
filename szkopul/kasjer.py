@@ -17,17 +17,17 @@ while aktualny_czas < L:  # Dla każdego klienta
         kiedy = list(klienci.keys())[id_]
         id_ += 1
         ile = klienci[kiedy]
-
+        s_ = 0
         if aktualny_czas + a <= kiedy:
             while aktualny_czas + a <= kiedy:
                 suma_przerw += 1
+                s_ += 1
                 aktualny_czas += a
             aktualny_czas += ile
         else:
             aktualny_czas = kiedy + ile
-        print(f"Klient o {kiedy} zajął {ile}, przerwy {suma_przerw}")
+        print(f"Klient o {kiedy} zajął {ile}, przerwy {suma_przerw}, {s_}")
         print(f"Aktualny czas {aktualny_czas}")
-        print(f"Czas do końca zmiany {L - aktualny_czas}")
 
     except IndexError: # Koniec klientów, obliczaj ile przerw do konca zmiany
         if aktualny_czas + a <= L:
