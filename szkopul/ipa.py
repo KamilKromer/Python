@@ -4,7 +4,7 @@ ilosc = int(input())
 wzrosty = list(input().split(sep=' '))
 
 
-tol = 100
+tol = 1000
 pary = 0
 
 for ind in range(len(wzrosty)): # To rework
@@ -32,4 +32,4 @@ for Wind in range(len(wzrosty)):
         elif wz > wz2 and wz - tol <= wz2:
             pary += 1
 
-print(pary)
+print(int(pary))

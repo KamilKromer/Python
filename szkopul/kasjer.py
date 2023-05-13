@@ -23,11 +23,7 @@ while aktualny_czas < L:  # Dla każdego klienta
                 suma_przerw += 1
                 s_ += 1
                 aktualny_czas += a
-            aktualny_czas += ile
-        else:
-            aktualny_czas = kiedy + ile
-        print(f"Klient o {kiedy} zajął {ile}, przerwy {suma_przerw}, {s_}")
-        print(f"Aktualny czas {aktualny_czas}")
+        aktualny_czas = kiedy + ile
 
     except IndexError: # Koniec klientów, obliczaj ile przerw do konca zmiany
         if aktualny_czas + a <= L:
