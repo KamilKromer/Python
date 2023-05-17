@@ -13,12 +13,8 @@ for ind in range(len(wzrosty)): # To rework
         wzrost2 = int(wzrosty[ind2])
 
         tol_w = math.fabs(wzrost - wzrost2)
-    if tol_w < tol:
-        tol = tol_w
-
-
-print(tol)
-
+        if tol_w < tol:
+            tol = tol_w
 
 for Wind in range(len(wzrosty)):
     wz = int(wzrosty[Wind])
