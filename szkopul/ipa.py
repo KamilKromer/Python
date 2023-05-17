@@ -15,6 +15,8 @@ for ind in range(len(wzrosty)): # To rework
         tol_w = math.fabs(wzrost - wzrost2)
         if tol_w < tol:
             tol = tol_w
+        if tol == 0:
+            break
 
 for Wind in range(len(wzrosty)):
     wz = int(wzrosty[Wind])
